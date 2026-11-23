@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ecommupscale Ingredient Finder</title>
+<link rel="icon" href="icons/icon32.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap">
+<link rel="stylesheet" href="app.css">
+<script src="core.js"></script>
+<script src="lib/tesseract.min.js"></script>
+<script src="ocr.js"></script>
+</head>
+<body class="ifs">
+<div class="wrap">
+  <header class="top">
+    <div class="brandbar">
+      <div class="brand"><span class="logobox"><img src="logo.png" alt="Ecommupscale"></span>
+        <h1><span class="eu">Ecommupscale</span> Ingredient Finder</h1></div>
+      <div class="ctas">
+        <a class="cta book" href="https://calendly.com/hamad-akram-amazon-ecommerce/new-meeting" target="_blank" rel="noopener">Book a consultancy meeting</a>
+        <a class="cta audit" id="auditBtn" href="mailto:hammad.ecomm117@gmail.com" title="Email hammad.ecomm117@gmail.com">Get a free audit</a>
+      </div>
+    </div>
+    <p>Paste ASINs or Amazon links from any marketplace. You get the ingredients, supplement facts with mg amounts, supplement details, directions and safety information.</p>
+  </header>
+
+  <div class="sidecol">
+  <div class="tabs" role="tablist">
+    <button type="button" class="tab on" id="tabAsin" role="tab" aria-selected="true">Find by ASIN or link</button>
+    <button type="button" class="tab" id="tabIng" role="tab" aria-selected="false">Find by ingredients</button>
+  </div>
+  <form class="side" id="ingForm" hidden>
+    <label class="f" for="ingList">Your ingredients</label>
+    <textarea id="ingList" placeholder="Magnesium Glycinate 400 mg&#10;Vitamin B6 10 mg&#10;Zinc"></textarea>
+    <p class="hint">One per line, or separate with commas. The amount is optional.</p>
+
+    <label class="f" for="ingMp" style="margin-top:14px">Amazon marketplace</label>
+    <select id="ingMp"></select>
+
+    <label class="f" for="ingN" style="margin-top:14px">Products to find</label>
+    <select id="ingN"><option>5</option><option selected>10</option><option>15</option><option>20</option></select>
+
+    <label class="opt"><input type="checkbox" id="ingAll" checked> Only products that contain all my ingredients</label>
+    <label class="opt"><input type="checkbox" id="ingSameForm" checked> Same form too (Glycinate, Citrate, Oxide and so on)</label>
+    <label class="opt"><input type="checkbox" id="ingLabels" checked> Read label photos when a page has no supplement facts table (slower, more complete)</label>
+
+    <div class="btns">
+      <button class="primary" id="ingRun" type="submit">Find products</button>
+      <button id="ingStop" type="button" hidden>Stop</button>
+      <button id="ingCsv" type="button" disabled>Download CSV</button>
+    </div>
+    <p class="formmsg" id="ingMsg" role="alert"></p>
+  </form>
+  <form class="side" id="form">
+    <label class="f" for="mp">Marketplace</label>
+    <select id="mp"></select>
+    <p class="hint">Used for plain ASINs. Links use their own marketplace.</p>
+
+    <label class="f" for="asins" style="margin-top:14px">ASINs or links</label>
+    <textarea id="asins" placeholder="B0XXXXXXXX&#10;https://www.amazon.de/dp/B0XXXXXXXX"></textarea>
+    <p class="hint">One per line.</p>
+
+    <label class="opt"><input type="checkbox" id="auto" checked> Read the label photos when the page has no supplement facts table</label>
+
+    <div class="btns">
+      <button class="primary" id="run" type="submit">Find ingredients</button>
+      <button id="csv" type="button">Download CSV</button>
+    </div>
+    <p class="formmsg" id="formmsg" role="alert"></p>
+    <p class="hint">Tip: on any Amazon product page, click the Ingredient Finder icon in the toolbar to read that product straight away.</p>
+  </form>
+  </div>
+
+  <main>
+    <section class="cmp" id="find" hidden>
+      <div class="cmphead"><h2>Products with your ingredients</h2></div>
+      <p class="ptitle" id="findFor"></p>
+      <p class="lstat" id="findStatus" role="status"></p>
+      <div id="findOut"></div>
+    </section>
+    <div id="asinMain">
+    <section class="cmp" id="cmp" hidden>
+      <div class="cmphead"><h2>Compare with similar products</h2><button type="button" id="cmpClose">Close</button></div>
+      <p class="ptitle" id="cmpFor"></p>
+      <fieldset class="where"><legend>Where to look</legend>
+        <label class="opt"><input type="radio" name="where" value="web" checked> Whole web: brand websites, iHerb, Walmart, online shops</label>
+        <label class="opt"><input type="radio" name="where" value="amazon"> Amazon top products</label>
+        <label class="opt"><input type="radio" name="where" value="both"> Both</label>
+      </fieldset>
+      <div class="cmpform">
+        <label id="webQL">Web search<input id="cmpWebQuery"></label>
+        <label id="amzQL">Amazon search<input id="cmpQuery"></label>
+        <label>Marketplace<select id="cmpMp"></select></label>
+        <label>Products<select id="cmpN"><option>3</option><option selected>5</option><option>8</option></select></label>
+      </div>
+      <label class="f" for="cmpExtra" style="margin-top:10px">Add product links yourself (optional)</label>
+      <textarea id="cmpExtra" rows="2" placeholder="Any website link, Amazon link or ASIN, one per line"></textarea>
+      <p class="hint">TikTok Shop and other app style shops only show their data inside the browser. Open the product there and click the Ingredient Finder icon, it is added to this comparison.</p>
+      <label class="opt"><input type="checkbox" id="cmpLabels" checked> Read label photos when a page has no supplement facts as text (slower, more complete)</label>
+      <div class="btns"><button class="primary" type="button" id="cmpRun">Find and compare</button><button type="button" id="cmpCsv" disabled>Download comparison CSV</button></div>
+      <p class="lstat" id="cmpStatus" role="status"></p>
+      <div id="cmpOut"></div>
+    </section>
+    <p class="summary" id="summary"></p>
+    <div id="results">
+      <div class="empty"><b>No results yet.</b> Add ASINs on the left and press Find ingredients. Each product shows up here as its own panel.</div>
+    </div>
+    </div>
+  </main>
+</div>
+<footer class="foot">
+  <img src="logo.png" alt="Ecommupscale">
+  <p>Need help growing your Amazon brand? Talk to Ecommupscale.</p>
+  <div class="ctas">
+    <a class="cta book" href="https://calendly.com/hamad-akram-amazon-ecommerce/new-meeting" target="_blank" rel="noopener">Book a consultancy meeting</a>
+    <a class="cta audit" id="auditBtn2" href="mailto:hammad.ecomm117@gmail.com">Get a free audit</a>
+  </div>
+  <p class="mail">Free audit requests go to hammad.ecomm117@gmail.com</p>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>

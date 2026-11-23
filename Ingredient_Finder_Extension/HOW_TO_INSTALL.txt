@@ -1,0 +1,54 @@
+ECOMMUPSCALE INGREDIENT FINDER, CHROME EXTENSION
+
+Install (one time, about 2 minutes)
+1. Unzip this file. Keep the folder Ingredient_Finder_Extension somewhere safe, for example in Documents. Do not delete it later, Chrome runs the extension from this folder.
+2. Open Chrome and go to chrome://extensions
+3. Turn on Developer mode (switch at the top right).
+4. Click Load unpacked and choose the Ingredient_Finder_Extension folder.
+5. Click the puzzle icon in the Chrome toolbar and pin Ecommupscale Ingredient Finder so its icon is always visible.
+Works the same in Microsoft Edge (edge://extensions) and Brave.
+
+How to use
+1. Click the Ecommupscale Ingredient Finder icon. A new tab opens.
+2. Paste ASINs or Amazon links, one per line, pick the marketplace for plain ASINs, and press Find ingredients.
+3. For each product you get the ingredients in printed order, supplement facts, supplement details, directions and safety information.
+4. If the page has no supplement facts table, the tool reads the product photos, finds the label and fills in the mg amounts. Always compare those numbers with the photo, you can click any cell to fix it.
+5. Press Download CSV to get everything in one sheet.
+
+Shortcut: on any Amazon product page, click the icon and that product is read straight away.
+
+Find Amazon products by ingredients (new in 1.6)
+1. Open Ingredient Finder and click the tab Find by ingredients (top left).
+2. Type your ingredients, one per line or separated by commas. The amount is optional, for example Magnesium Glycinate 400 mg, Vitamin B6 10 mg, Zinc.
+3. Pick the Amazon marketplace and how many products you want.
+4. Only products that contain all my ingredients: keeps only products that have every ingredient you typed. Untick it to also see products that have some of them.
+5. Same form too: Magnesium Glycinate will not match Magnesium Citrate or Oxide. Untick it to match the nutrient only.
+6. Press Find products. The tool searches Amazon, opens each product, reads its supplement facts (from the page text, or from the label photo if needed) and keeps the products that contain your ingredients. You can press Stop at any time.
+7. You get a table with Match percent, where each of your ingredients was found, the amount per serving (with how many mg more or less than yours), extra ingredients, price, price per serving, rating and reviews.
+8. Download CSV gives you the same table as a sheet. Read full details opens that product in the ASIN tab.
+
+Compare with similar products anywhere on the web
+1. Read your Amazon product first, then press Compare with similar products on its result.
+2. Where to look: Whole web (brand websites, iHerb, Walmart, online shops), Amazon top products, or Both.
+3. The web search is filled in from the supplement facts of your product, for example Magnesium Glycinate Vitamin B6 Capsule supplement facts. Change it if you like.
+4. Press Find and compare. The tool searches the web, skips Amazon, blogs, news and health info sites, opens each shop page, reads its supplement facts (from the text, or from the label photo if needed), and keeps every product that contains the main nutrient of yours (for example every magnesium product, also the ones with extra ingredients like zinc or vitamin B6). Shop pages that do not show supplement facts are kept too, as long as the main ingredient is the same, so you still see their price, rating and the amount in the product name. If the web gives nothing usable, Amazon top products are added automatically. Each one gets a Match with your product percentage.
+5. You get one side by side table: where it is sold, match, price, rating, reviews, serving size, servings, price per serving, every ingredient amount per serving, and fillers. The best value in each row is highlighted and the bottom shows who wins the most rows.
+6. Difference from your product: for each product you see what is the same as yours, what is extra in that product (with amounts), and what is missing compared to yours. Amount cells also say how many mg more or less than yours.
+7. Ingredient forms shows which forms each product uses, for example Glycinate, Citrate, Oxide.
+8. Download comparison CSV gives you the same table as a sheet.
+
+You can also paste any product links yourself (any website, Amazon links or ASINs).
+
+TikTok Shop and other app style shops
+These shops only show their data inside the browser, so they cannot be searched automatically. Open the product there, then click the Ingredient Finder icon. The product is added to the comparison of your last Amazon product straight away.
+
+If Amazon shows a robot check
+Open that Amazon site in a normal tab, solve the check once, then press Retry on the result.
+
+Notes
+The extension uses your own browser to open Amazon, it sends your data nowhere else.
+English labels are read offline. For German, French, Italian, Spanish and other marketplaces the label language file downloads once on first use.
+
+Ecommupscale
+Book a consultancy meeting: https://calendly.com/hamad-akram-amazon-ecommerce/new-meeting
+Free audit: hammad.ecomm117@gmail.com
